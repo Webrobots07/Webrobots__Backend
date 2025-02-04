@@ -1,5 +1,5 @@
 import express from "express"
-import { dbConnection } from "../Backend/database/dbConnection.js"
+// import { dbConnection } from "../Backend/database/dbConnection.js"
 import UserRouter from "./Router/userRouter.js"
 import cors from "cors"
 
