@@ -7,10 +7,12 @@ app.use(cors());
 
 // OR for specific origin
 app.use(cors({
-  origin: 'https://vkaitool.netlify.app',
-  methods: 'GET,POST,PUT,DELETE',
+  origin: 'https://vkaitool.netlify.app', 
+  methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
   credentials: true
 }));
+app.options('*', cors());
+
 // app.use(cookieParser())
 app.use(express.json()); 
 app.use(express.urlencoded({ extended: true }));
