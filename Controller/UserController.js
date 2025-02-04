@@ -1,34 +1,34 @@
 import Profile from "../Model/UserModel.js";
-import bcrypt from "bcrypt"
+// import bcrypt from "bcrypt"
 import { GoogleGenerativeAI } from "@google/generative-ai";
 
-export const Register=async(req,res,next)=>{
-    try {
-        const {name,email,contact,age,gender,about,address,password}=req.body;
+// export const Register=async(req,res,next)=>{
+//     try {
+//         const {name,email,contact,age,gender,about,address,password}=req.body;
    
-    if(!name || !email || !contact || !age || !gender || !about || !address || !password )
-    {
-        return res.status(400).json({message:"Please fill full details"})
-    }
-    const isUserExist=await Profile.findOne({email})
-    if(isUserExist)
-    {
-        return res.status(400).json({message:"User Already Exist"})
-    }
-    const hashedPassword=await bcrypt.hash(password,10)
+//     if(!name || !email || !contact || !age || !gender || !about || !address || !password )
+//     {
+//         return res.status(400).json({message:"Please fill full details"})
+//     }
+//     const isUserExist=await Profile.findOne({email})
+//     if(isUserExist)
+//     {
+//         return res.status(400).json({message:"User Already Exist"})
+//     }
+//     const hashedPassword=await bcrypt.hash(password,10)
 
-    const newUser=new Profile({
-        name,email,contact,age,gender,about,address,password:hashedPassword
-    })
+//     const newUser=new Profile({
+//         name,email,contact,age,gender,about,address,password:hashedPassword
+//     })
 
-    await newUser.save();
-    res.status(201).json({success: true,message:"User Registered Succesfully ",newUser})
-    } catch (error) {
-        console.error("Error in registring the User",error)
-        res.status(500).json({message:"Internal Server Error"})
-    }
+//     await newUser.save();
+//     res.status(201).json({success: true,message:"User Registered Succesfully ",newUser})
+//     } catch (error) {
+//         console.error("Error in registring the User",error)
+//         res.status(500).json({message:"Internal Server Error"})
+//     }
 
-}
+// }
 
 const genAI = new GoogleGenerativeAI("AIzaSyBhlhAESKZxa6faWnSxEhwMd62-Hn6AwzQ");
 
