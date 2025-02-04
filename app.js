@@ -7,7 +7,7 @@ app.use(cors());
 
 // OR for specific origin
 app.use(cors({
-  origin: 'http://localhost:5173',
+  origin: 'https://vkaitool.netlify.app',
   methods: 'GET,POST,PUT,DELETE',
   credentials: true
 }));
