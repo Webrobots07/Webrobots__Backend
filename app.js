@@ -1,7 +1,7 @@
 import express from "express"
 import UserRouter from "./Router/userRouter.js"
 import cors from "cors"
-import {dbConnection} from "./DbConnection/DbCOnnection.js"
+// import {dbConnection} from "./DbConnection/DbCOnnection.js"
 
 const app=express()
 app.use(cors());
@@ -24,7 +24,7 @@ app.get("/home",(req,res)=>{
 })
 
 app.use("/api/v1/user",UserRouter)
-dbConnection()
+// dbConnection()
 
 
 

@@ -6,7 +6,7 @@ import pdfjsLib from "pdfjs-dist/legacy/build/pdf.js";
 
 
 import Tesseract from "tesseract.js";
-import Summary from "../Model/Summary.js";
+// import Summary from "../Model/Summary.js";
 
 // export const Register=async(req,res,next)=>{
 //     try {
@@ -51,13 +51,13 @@ export const generateQueryAnswer = async (req, res) => {
         const model = genAI.getGenerativeModel({ model: "gemini-pro" });
         const result = await model.generateContent(prompt);
         const response = result.response.text();
-        const newSummary = new Summary({
-           summary:response
-        });
+        // const newSummary = new Summary({
+        //    summary:response
+        // });
 
-        await newSummary.save();
-        res.status(201).json({success:true, message: "Summary Generated", summary: response});
-        // res.json({ success: true, summary: response });
+        // await newSummary.save();
+        // res.status(201).json({success:true, message: "Summary Generated", summary: response});
+        res.json({ success: true, summary: response });
     } catch (error) {
         console.error("Error generating summary:", error);
         res.status(500).json({ success: false, message: "AI service failed" });
