@@ -7,7 +7,8 @@ app.use(cors());
 
 // OR for specific origin
 app.use(cors({
-  origin: 'https://vkaitool.netlify.app', 
+  origin: 'https://webrobots-dev-ai.netlify.app', 
+    // origin: 'http://localhost:5173', 
   methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
   credentials: true
 }));
@@ -17,8 +18,8 @@ app.options('*', cors());
 app.use(express.json()); 
 app.use(express.urlencoded({ extended: true }));
 
-app.get("/home",(res,req)=>{
-   req.send("Home page")
+app.get("/home",(req,res)=>{
+   res.send("Home page")
 })
 
 app.use("/api/v1/user",UserRouter)
