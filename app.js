@@ -1,13 +1,14 @@
 import express from "express"
 import UserRouter from "./Router/userRouter.js"
 import cors from "cors"
+import {dbConnection} from "./DbConnection/DbCOnnection.js"
 
 const app=express()
 app.use(cors());
 
 // OR for specific origin
 app.use(cors({
-  origin: 'https://webrobots-dev-ai.netlify.app', 
+  origin: 'https://webrobots-ai.netlify.app', 
     // origin: 'http://localhost:5173', 
   methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
   credentials: true
@@ -23,5 +24,8 @@ app.get("/home",(req,res)=>{
 })
 
 app.use("/api/v1/user",UserRouter)
+dbConnection()
+
+
 
 export default app
