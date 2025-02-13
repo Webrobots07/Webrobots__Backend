@@ -15,8 +15,8 @@ dotenv.config({path:"./Config/config.env"})
 
 
 app.use(cors({
-  // origin: 'https://webrobots-ai.netlify.app', 
-    origin: 'http://localhost:5173', 
+  origin: 'https://webrobot-ai.netlify.app', 
+    // origin: 'http://localhost:5173', 
   methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
   credentials: true,
 }));
