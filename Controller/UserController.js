@@ -49,7 +49,7 @@ export const loginUser = async (req, res) => {
         // res.cookie("token", token, { httpOnly: true, secure: false, sameSite: "None" });
         res.status(200).cookie("token",token,{
             httpOnly:true,
-            sameSite:"lax",
+            sameSite:"None",
             secure: true,
         }).json({
             success:true,
@@ -70,7 +70,7 @@ export const googleAuthSuccess = (req, res) => {
     if (req.user) {
         const token = req.user.token;
 
-        res.cookie("token", token, { httpOnly: true, secure: true, sameSite: "lax" });
+        res.cookie("token", token, { httpOnly: true, secure: true, sameSite: "None" });
         res.redirect("http://localhost:5173/");
     } else {
         res.status(400).json({ message: "Google login failed" });
@@ -78,7 +78,7 @@ export const googleAuthSuccess = (req, res) => {
 };
 
 export const logout = (req, res) => {
-    res.clearCookie("token", { httpOnly: true, secure: true, sameSite: "lax" });
+    res.clearCookie("token", { httpOnly: true, secure: true, sameSite: "None" });
     res.status(200).json({ message: "Successfully logged out" });
 };
 
