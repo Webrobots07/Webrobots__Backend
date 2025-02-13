@@ -1,30 +1,38 @@
 import express from "express"
-import UserRouter from "./Router/userRouter.js"
+import AiRouter from "./Router/AiRouter.js"
+import UserRouter from "./Router/UserRoute.js"
 import cors from "cors"
-// import {dbConnection} from "./DbConnection/DbCOnnection.js"
+import {dbConnection} from "./DbConnection/DbCOnnection.js"
+import dotenv from "dotenv"
+import session from "express-session";
+import cookieParser from "cookie-parser"
+import passport from "passport";
+import "./Config/passport.js"; // Google OAuth Strategy setup
 
 const app=express()
-app.use(cors());
+dotenv.config({path:"./Config/config.env"})
+// app.use(cors());
 
-// OR for specific origin
+
 app.use(cors({
-  origin: 'https://webrobots-ai.netlify.app', 
-    // origin: 'http://localhost:5173', 
+  // origin: 'https://webrobots-ai.netlify.app', 
+    origin: 'http://localhost:5173', 
   methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
-  credentials: true
+  credentials: true,
 }));
-app.options('*', cors());
+// app.options('*', cors());
 
-// app.use(cookieParser())
-app.use(express.json()); 
-app.use(express.urlencoded({ extended: true }));
+app.use(cookieParser());
+app.use(express.json({ limit: "10mb" }));
+app.use(express.urlencoded({ limit: "10mb", extended: true }));
 
-app.get("/home",(req,res)=>{
-   res.send("Home page")
-})
+app.use(passport.initialize());
 
-app.use("/api/v1/user",UserRouter)
-// dbConnection()
+app.use("/api/v1/user",AiRouter)
+app.use("/api/v1/user/data",UserRouter)
+
+
+dbConnection()
 
 
 
