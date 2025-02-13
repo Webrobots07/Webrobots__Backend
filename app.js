@@ -7,7 +7,7 @@ import dotenv from "dotenv"
 import session from "express-session";
 import cookieParser from "cookie-parser"
 import passport from "passport";
-import "./Config/passport.js"; // Google OAuth Strategy setup
+import "./Controller/passport.js"; // Google OAuth Strategy setup
 
 const app=express()
 dotenv.config({path:"./Config/config.env"})
